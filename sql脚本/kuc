@@ -1,0 +1,138 @@
+/*
+SQLyog Ultimate v12.4.1 (64 bit)
+MySQL - 5.7.17-log : Database - erp
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`erp` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `erp`;
+
+/*Table structure for table `checkdetail` */
+
+DROP TABLE IF EXISTS `checkdetail`;
+
+CREATE TABLE `checkdetail` (
+  `cheid` varchar(50) DEFAULT NULL COMMENT '盘点单的流水号check(cheid)',
+  `chelineid` int(9) DEFAULT NULL COMMENT '栏号',
+  `chematerielid` varchar(50) DEFAULT NULL COMMENT '物料的编号Materiel(matid)',
+  `chematerielname` varchar(50) DEFAULT NULL COMMENT '物料的名称',
+  `cheunitname` varchar(50) DEFAULT NULL COMMENT '单位名称',
+  `cheaccountqty` int(9) DEFAULT NULL COMMENT '账面数量',
+  `checheckqty` int(9) DEFAULT NULL COMMENT '盘点数量',
+  `cheprofitandlossqty` int(9) DEFAULT NULL COMMENT '盈亏数量'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `checkdetail` */
+
+/*Table structure for table `checked` */
+
+DROP TABLE IF EXISTS `checked`;
+
+CREATE TABLE `checked` (
+  `cheid` varchar(50) DEFAULT NULL COMMENT '盘点单的流水号',
+  `chestorageno` varchar(50) DEFAULT NULL COMMENT '盘点的仓库编号Storage(stoid)',
+  `chestoragename` varchar(50) DEFAULT NULL COMMENT '盘点的仓库名称',
+  `chedate` date DEFAULT NULL COMMENT '盘点的日期',
+  `cheman` varchar(50) DEFAULT NULL COMMENT '盘点人名称',
+  `chedeptname` varchar(50) DEFAULT NULL COMMENT '部门名称',
+  `cherestrictman` varchar(50) DEFAULT NULL COMMENT '制单人-当前登录人',
+  `cheauditingman` varchar(50) DEFAULT NULL COMMENT '审核人-当前登录人',
+  `chestatu` int(5) DEFAULT NULL COMMENT '审核状态，0为未审核',
+  `safetyone` varchar(50) DEFAULT NULL COMMENT '保留字段',
+  `safetytwo` varchar(50) DEFAULT NULL COMMENT '保留字段',
+  `enables` int(5) DEFAULT NULL COMMENT '标识是否删除'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `checked` */
+
+/*Table structure for table `movedetails` */
+
+DROP TABLE IF EXISTS `movedetails`;
+
+CREATE TABLE `movedetails` (
+  `Mdsno` varchar(55) DEFAULT NULL COMMENT '单号',
+  `Mdsmseno` varchar(55) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '单据号码(单号)',
+  `mdsmaterieltype` varchar(55) DEFAULT NULL COMMENT '物料编号',
+  `mdsmaterielname` varchar(55) DEFAULT NULL COMMENT '物料名称',
+  `mdsmaterielspecs` varchar(55) DEFAULT NULL COMMENT '物料规格',
+  `mdsmaterielunit` varchar(55) DEFAULT NULL COMMENT '单位',
+  `mdsmaterielnum` varchar(55) DEFAULT NULL COMMENT '数量',
+  `Mdsavgcost` varchar(55) DEFAULT NULL COMMENT '现行平均成本（出库）',
+  `mdscost` varchar(55) DEFAULT NULL COMMENT '总现行平均成本',
+  `Mdsremark` varchar(244) DEFAULT NULL COMMENT '备注',
+  `Mespreservingone` varchar(55) DEFAULT NULL COMMENT '保留字段1',
+  `mespreservingtwo` varchar(55) DEFAULT NULL COMMENT '保留字段2',
+  `enables` int(11) DEFAULT NULL COMMENT '标识是否删除'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `movedetails` */
+
+/*Table structure for table `moveprice` */
+
+DROP TABLE IF EXISTS `moveprice`;
+
+CREATE TABLE `moveprice` (
+  `movedate` date DEFAULT NULL COMMENT '单据日期',
+  `moveorderNo` varchar(50) DEFAULT NULL COMMENT '单据号码',
+  `moveadjust` varchar(50) DEFAULT NULL COMMENT '调整方式',
+  `movestorageNo` varchar(50) DEFAULT NULL COMMENT '仓库编号',
+  `movemake` varchar(50) DEFAULT NULL COMMENT '制单人员',
+  `movecheck` varchar(50) DEFAULT NULL COMMENT '复核人员',
+  `moveremark` varchar(200) DEFAULT NULL COMMENT '备注',
+  `moveAuditingState` int(9) DEFAULT NULL COMMENT '审核状态',
+  `safetyone` varchar(50) DEFAULT NULL COMMENT '保留字段',
+  `safetytwo` varchar(50) DEFAULT NULL COMMENT '保留字段',
+  `enables` int(11) DEFAULT NULL COMMENT '标识是否删除'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `moveprice` */
+
+/*Table structure for table `movepricedetail` */
+
+DROP TABLE IF EXISTS `movepricedetail`;
+
+CREATE TABLE `movepricedetail` (
+  `Moveinile` int(9) DEFAULT NULL COMMENT '行号',
+  `moveorderNo` varchar(50) DEFAULT NULL COMMENT '单据号码',
+  `Movematerielno` varchar(50) DEFAULT NULL COMMENT '物料编号',
+  `Movematerielname` varchar(5) DEFAULT NULL COMMENT '物料名称',
+  `Movespectype` varchar(50) DEFAULT NULL COMMENT '规格型号',
+  `Moveunit` varchar(50) DEFAULT NULL COMMENT '单位',
+  `Movestocks` int(29) DEFAULT NULL COMMENT '库存量',
+  `moveaveragecost` int(22) DEFAULT NULL COMMENT '现行平均成本',
+  `moveprice` int(22) DEFAULT NULL COMMENT '单价（自己填）',
+  `movemoveprice` int(22) DEFAULT NULL COMMENT '调价金额',
+  `safetyone` varchar(55) DEFAULT NULL COMMENT '保留字段',
+  `safetytwo` varchar(55) DEFAULT NULL COMMENT '保留字段',
+  `enables` int(22) DEFAULT NULL COMMENT '标识是否删除'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `movepricedetail` */
+
+/*Table structure for table `movestorage` */
+
+DROP TABLE IF EXISTS `movestorage`;
+
+CREATE TABLE `movestorage` (
+  `Mseno` varchar(50) DEFAULT NULL COMMENT '单据号码（单号）',
+  `msedate` date DEFAULT NULL COMMENT '单据日期',
+  `Mseoutstorage` varchar(55) DEFAULT NULL COMMENT '出库仓（仓库编号）',
+  `mseinsertstor` varchar(55) DEFAULT NULL COMMENT '出库仓（仓库编号）',
+  `mseemployee` varchar(55) DEFAULT NULL COMMENT '制作人'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `movestorage` */
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

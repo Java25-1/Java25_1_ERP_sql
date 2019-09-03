@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>MD5</title>
+        <script type="text/javascript" src="md5.js"></script> 
+        <script type="text/javascript">
+            function button1_onclick() {
+                //计算明文的MD5值
+                //使用md5.js包中的hex_md5()函数可以将文本计算出MD5的十六进制文本
+                document.getElementById("textBox2").value = hex_md5(document.getElementById("textBox1").value);
+            }
+            
+            // 结合密钥的MD5加密方法
+            // 这种方法可用于口令传输加密
+            //
+            // 服务端接到加令过的口令时，并不能解开密码——MD5是种散列算法，不能通过散列值倒推出原文
+            // 而是采用与客户端相同的计算方法，把数据库中的口令的MD5值加上密钥，再做MD5散列，
+            // 得出的结果与传输过来的口令对比，相同则表明口令正确。
+            function button2_onclick() {
+                var mdv = hex_md5(document.getElementById("textBox3").value); //计算明文的MD5值
+                mdv += document.getElementById("textBox4").value; //把明文的MD5加上密钥
+                document.getElementById("textBox5").value = hex_md5(mdv); 
+            }
+            
+        </script>
+    </head>
+    <body>
+        明文：<input type="text" value="" id="textBox1" style="width: 300px"/>
+        <br />
+        MD5 ：<input type="text" readonly="readonly" value="" id="textBox2" style="width: 300px"/>
+        <br />
+        <input type="button" value="计算" onclick="button1_onclick()" />
+        <br />
+        <br />
+        <br />
+        明文：<input type="text" value="" id="textBox3" style="width: 300px"/>
+        <br />
+        密钥：<input type="text" value="123456" id="textBox4" style="width: 300px"/>
+        <br />
+        密文：<input type="text" readonly="readonly" value="" id="textBox5" style="width: 300px"/>
+        <br />
+        <input type="button" value="计算" onclick="button2_onclick()" />
+    </body>
+</html>

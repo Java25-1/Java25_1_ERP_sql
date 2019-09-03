@@ -1,0 +1,100 @@
+
+
+DROP TABLE IF EXISTS `mainlistofpurchaseinvoices`;
+
+CREATE TABLE `mainlistofpurchaseinvoices` (
+  `storageid` varchar(50) DEFAULT NULL,
+  `citationid` varchar(50) DEFAULT NULL,
+  `clientsupply` varchar(50) DEFAULT NULL,
+  `storagedate` date DEFAULT NULL,
+  `documenttype` varchar(50) DEFAULT NULL,
+  `documentint` varchar(50) DEFAULT NULL,
+  `taxincluded` int(11) DEFAULT NULL,
+  `invoiceint` varchar(50) DEFAULT NULL,
+  `checkstatus` varchar(50) DEFAULT NULL,
+  `invoicetype` varchar(50) DEFAULT NULL,
+  `voucherint` varchar(50) DEFAULT NULL,
+  `currency` varchar(50) DEFAULT NULL,
+  `CertificateNo` varchar(50) DEFAULT NULL,
+  `exchangerate` float DEFAULT NULL,
+  `Purchaser` varchar(50) DEFAULT NULL,
+  `subordinatedepartments` varchar(50) DEFAULT NULL,
+  `attributionofaccounts` varchar(50) DEFAULT NULL,
+  `termofpayment` varchar(100) DEFAULT NULL,
+  `daysofpaymentterms` int(11) DEFAULT NULL,
+  `dateofpayment` date DEFAULT NULL,
+  `accountmonth` date DEFAULT NULL,
+  `paystrike1` varchar(50) DEFAULT NULL,
+  `paystrike2` varchar(50) DEFAULT NULL,
+  `paystrike3` varchar(50) DEFAULT NULL,
+  `paymoney1` float DEFAULT NULL,
+  `paymoney2` float DEFAULT NULL,
+  `paymoney3` float DEFAULT NULL,
+  `systempersonnel` varchar(50) DEFAULT NULL,
+  `reviewpersonne` varchar(50) DEFAULT NULL,
+  `subordinateprojects` varchar(50) DEFAULT NULL,
+  `enables` int(11) DEFAULT NULL,
+  `isaditing` int(11) DEFAULT NULL,
+  `safetytone` varchar(50) DEFAULT NULL,
+  `safetytwo` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `mainlistofpurchaseinvoices` */
+
+/*Table structure for table `mainlistofpurchaseinvoicesdetatils` */
+
+DROP TABLE IF EXISTS `mainlistofpurchaseinvoicesdetatils`;
+
+CREATE TABLE `mainlistofpurchaseinvoicesdetatils` (
+  `invoiceddetailsid` varchar(50) DEFAULT NULL,
+  `lineint` int(11) DEFAULT NULL,
+  `materialint` varchar(50) DEFAULT NULL,
+  `namematerial` varchar(50) DEFAULT NULL,
+  `specificationtype` varchar(50) DEFAULT NULL,
+  `nameofunit` varchar(50) DEFAULT NULL,
+  `num` int(11) DEFAULT NULL,
+  `unitprice` float DEFAULT NULL,
+  `amountofmoney` float DEFAULT NULL,
+  `taxrate` float DEFAULT NULL,
+  `taxamount` float DEFAULT NULL,
+  `taxableamount` float DEFAULT NULL,
+  `unenteredquantity` int(11) DEFAULT NULL,
+  `purchasingorderint` varchar(50) DEFAULT NULL,
+  `notestoentries` varchar(50) DEFAULT NULL,
+  `safetytone` varchar(50) DEFAULT NULL,
+  `safetyttwo` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `mainlistofpurchaseinvoicesdetatils` */
+
+/*Table structure for table `mainlistofpurchaseinvoicesdetatils2` */
+
+DROP TABLE IF EXISTS `mainlistofpurchaseinvoicesdetatils2`;
+
+CREATE TABLE `mainlistofpurchaseinvoicesdetatils2` (
+  `invoicelist` varchar(50) DEFAULT NULL,
+  `lineint` int(11) DEFAULT NULL,
+  `materialint` varchar(50) DEFAULT NULL,
+  `namematerial` varchar(50) DEFAULT NULL,
+  `specificationtype` varchar(50) DEFAULT NULL,
+  `company` varchar(50) DEFAULT NULL,
+  `invoicequantity` int(11) DEFAULT NULL,
+  `invoiceunitprice` float DEFAULT NULL,
+  `invoiceamount` float DEFAULT NULL,
+  `invoicetaxrate` float DEFAULT NULL,
+  `invoicetax` float DEFAULT NULL,
+  `invoicetaxableamount` float DEFAULT NULL,
+  `sinkdifference` float DEFAULT NULL,
+  `spread` float DEFAULT NULL,
+  `standardcurrency` float DEFAULT NULL,
+  `totaldifference` float DEFAULT NULL,
+  `sourcelist` varchar(50) DEFAULT NULL,
+  `sourceno` varchar(50) DEFAULT NULL,
+  `notestoentries` varchar(50) DEFAULT NULL,
+  `safetytone` varchar(50) DEFAULT NULL,
+  `safetyttwo` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `mainlistofpurchaseinvoicesdetatils2` */
+
+/*Table structure for table `payment` */

@@ -1,0 +1,118 @@
+class 用户
+{
+    HashSet<String> roleSet = new HashSet<String>();   // 用户所拥有的角色列表
+    HashSet<String> billOpSet = new HashSet<String>(); // 用户所拥有的操作列表
+
+
+    // 查询角色列表
+    void QueryRoleSet()
+    {
+        SELECT f_rid
+          FROM t_user_roles
+         WHERE f_uid = @Uid
+         
+        foreach (行 in 行集)
+        {
+            roleSet.Add(行.f_rid);
+        }
+    }
+
+    // 查询用户的权限列表
+    void QueryOpSet()
+    {
+        SELECT DISTINCT 
+               A.f_bill_type
+              ,A.f_op
+          FROM t_role_permissible A
+              ,t_user_roles B
+         WHERE A.f_rid = B.f_rid
+           AND B.f_uid = @Uid
+           
+           
+        foreach (行 in 行集)
+        {
+            billOpSet.Add(行.f_bill_type + "." + 行.f_op);
+        }
+    }
+    
+    // 取得或设置用户编号
+    public string Uid { get;set; }
+    
+    // 取得或设置用户名称
+    public string UserName { get;set; }
+    
+    // 判断用户是否有执行某单据某操作的权限
+    public bool CanDo (string billType, string op)
+    {
+        return billOpSet.Contains(billType + "." + op);
+    }
+    
+    // 判断用户是否被赋予某角色
+    public bool IsInRole (string rid)
+    {
+        return roleSet.Contains(rid);
+    }
+}
+
+
+权限应用的案例: 
+
+
+// 取菜单   
+//   假定当前用户为"彭旭艳"
+List<菜单> GetMenuList()
+{
+    SELECT f_menu_id
+          ,f_parent_menu
+          ,f_menu_name
+          ,f_request_roles
+          ,f_check_bill_type
+          ,f_check_op
+          ,f_icon
+          ,f_url  
+      FROM t_menus
+    
+    List<菜单> menuList = new List<菜单>();
+
+    foreach (行 in 行集)
+    {
+        bool bOK = true;
+        
+        // 1、判断菜单项是否作角色检查
+        if (行.f_request_roles != "") 
+        {
+            // 只要用户具备任一角色，即可通过检查
+            string[] roles = 行.f_request_roles.Split(new Char[] { ";" });
+            bool b = false;
+            foreach (string rid in roles)
+            {
+                if (彭旭艳.IsInRole(rid))
+                {
+                    b = true;
+                    break;
+                }    
+               
+            }
+            bOK = b;
+        }
+        
+        // 2、判断菜单项是否作单据操作检查
+        if (行.f_check_bill_type != "" &&
+            行.f_check_op != "") 
+        {
+            if (!彭旭艳.CanDo(行.f_check_bill_type, 行.f_check_op))
+            {
+                bOK = false;
+            }  
+        }
+        
+        // 3、有权限，则该菜单行项返回
+        if (bOK) 
+        {
+            菜单 m  <-- 行;
+            menuList.Add(m);
+        }
+    } 
+
+    return menuList;
+}

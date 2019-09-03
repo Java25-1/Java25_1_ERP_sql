@@ -1,0 +1,415 @@
+create table recededetails
+(
+   Recid                varchar(20) not null comment '采购退货单号(stockrecede外键)',
+   Detsequ              int(11) not null comment '序号(联合主键)',
+   Matid                varchar(50) not null comment '物料编号(非外键)',
+   Matname              varchar(50) not null comment '物料名称',
+   Matspec              varchar(20) not null comment '规格型号',
+   Detnum               int(11) not null comment '数量',
+   Detagioprice         decimal(10,2) not null comment '折扣前单价',
+   Detdiscount          int(11) not null comment '折数',
+   Detprice             decimal(19,4) not null comment '单价',
+   Detamtmoney          decimal(19,4) not null comment '金额',
+   Depcess              int(11) not null comment '税率',
+   Depcessmoney         decimal(10,2) not null comment '税额',
+   Deplargess           int(11) not null comment '是否赠品',
+   Sodorigintype        varchar(20) not null comment '来源单别',
+   Sodorigin            varchar(20) not null comment '来源单号',
+   Enables              int(11) not null comment '标识是否删除',
+   Safetyone            varchar(50) not null comment '保留字段',
+   Safetytwo            varchar(50) not null comment '保留字段',
+   Extend0              varchar(200) default NULL comment '扩展字段0',
+   Extend1              varchar(200) default NULL comment '扩展字段1',
+   Extend2              varchar(200) default NULL comment '扩展字段2',
+   Extend3              varchar(200) default NULL comment '扩展字段3',
+   Extend4              varchar(200) default NULL comment '扩展字段4',
+   primary key (Recid, Detsequ)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购退货明细表';
+
+/*==============================================================*/
+/* Table: stockapply                                            */
+/*==============================================================*/
+create table stockapply
+(
+   Appid                varchar(20) not null comment '请购单编号',
+   Appdate              date not null comment '请购单日期',
+   Apptype              varchar(50) not null comment '请购采购类型',
+   Appcircs             int(11) not null comment '单况：已结案/未结案/无效',
+   Appperson            varchar(50) not null comment '请购人员',
+   Apppersonid          varchar(50) not null comment '伪外键：请购人员id',
+   Appdept              varchar(50) not null comment '请购部门',
+   Appdeptid            varchar(50) not null comment '伪外键：请购部门id',
+   Appmaker             varchar(50) not null comment '制单人员',
+   Appauditingperson    varchar(50) not null comment '复核人员',
+   Appauditing          varchar(50) not null comment '审核状态：未审核/已审核/无效',
+   Stockapplyname       varchar(50) not null comment '保存（“采购请购”）',
+   Enables              int(11) not null comment '标识是否删除',
+   Safetyone            varchar(50) not null comment '保留字段 保存（“采购请购”）',
+   Safetytwo            varchar(50) not null comment '保留字段',
+   Extend0              varchar(200) default NULL comment '扩展字段0',
+   Extend1              varchar(200) default NULL comment '扩展字段1',
+   Extend2              varchar(200) default NULL comment '扩展字段2',
+   Extend3              varchar(200) default NULL comment '扩展字段3',
+   Extend4              varchar(200) default NULL comment '扩展字段4',
+   primary key (Appid)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购请购主表';
+
+/*==============================================================*/
+/* Table: stockapplydetails                                     */
+/*==============================================================*/
+create table stockapplydetails
+(
+   Appid                varchar(20) not null comment '请购单编号',
+   Apdrows              int(11) not null comment '行号',
+   Apdmateridlid        varchar(50) not null comment '物料编号(伪外：物料主文件)',
+   Apdmateridlname      varchar(50) not null comment '物料名称',
+   Apdmodel             varchar(50) not null comment '规格型号',
+   Apdunit              varchar(50) not null comment '单位名称',
+   Apdnum               int(11) not null comment '数量',
+   Apdstandardprice     decimal(10,2) not null comment '标准进价',
+   Apdstandardmoney     decimal(10,2) not null comment '标准进价金额',
+   Apdprice             decimal(10,2) not null comment '单价',
+   Apdintomoney         decimal(10,2) not null comment '进价金额',
+   Apddemanddate        date not null comment '需求日期',
+   Apdstockdate         date not null comment '建议采购日期',
+   Apdnotnum            int(11) not null comment '未采购数量',
+   Apdoriginid          varchar(50) not null comment '来源单别',
+   Apdorigintype        varchar(20) not null comment '来源单号',
+   Apdremark            varchar(2000) not null comment '备注',
+   Enables              int(11) not null comment '标识是否删除',
+   Safetyone            varchar(50) not null comment '保留字段',
+   Safetytwo            varchar(50) not null comment '保留字段',
+   Extend0              varchar(200) default NULL comment '扩展字段0',
+   Extend1              varchar(200) default NULL comment '扩展字段1',
+   Extend2              varchar(200) default NULL comment '扩展字段2',
+   Extend3              varchar(200) default NULL comment '扩展字段3',
+   Extend4              varchar(200) default NULL comment '扩展字段4',
+   primary key (Appid, Apdrows)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购请购明细表';
+
+/*==============================================================*/
+/* Table: stockapplytype                                        */
+/*==============================================================*/
+create table stockapplytype
+(
+   Aptid                varchar(20) not null comment '类型编号',
+   Aptname              varchar(50) not null comment '类型名称',
+   Aptename             varchar(50) not null comment '英文名称',
+   Aptremark            varchar(2000) not null comment '备注',
+   Enable               int(11) not null comment '标识是否删除',
+   Extend0              varchar(200) default NULL comment '扩展字段0',
+   Extend1              varchar(200) default NULL comment '扩展字段1',
+   Extend2              varchar(200) default NULL comment '扩展字段2',
+   Extend3              varchar(200) default NULL comment '扩展字段3',
+   Extend4              varchar(200) default NULL comment '扩展字段4',
+   primary key (Aptid)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购请购类型表';
+
+/*==============================================================*/
+/* Table: stockinquire                                          */
+/*==============================================================*/
+create table stockinquire
+(
+   Stoid                varchar(20) not null comment '询价单编号',
+   Stopname             varchar(50) not null comment '供应商',
+   Stopid               varchar(50) not null comment '伪外键(供应商主文件)',
+   Stopaddress          varchar(100) not null comment '供应商地址',
+   Sotdate              date not null comment '单据日期',
+   Stoavdate            date not null comment '有效日期',
+   Stoistax             varchar(50) not null comment '是否含税(含税/未含税)',
+   Stodaddress          varchar(100) not null comment '送货地址',
+   Stomakeperson        varchar(50) not null comment '制单人员',
+   Stoauditingperson    varchar(50) not null comment '复核人员',
+   Stostockperson       varchar(50) not null comment '采购人员',
+   Stopersonid          varchar(50) not null comment '伪外键(请购人员外键)',
+   Stodept              varchar(50) not null comment '所属部门',
+   Stodeptid            varchar(50) not null comment '伪外键(所属部门外键)',
+   Stoauditing          varchar(50) not null comment '审核状态：未审核/已审核/无效',
+   Stockinquirename     varchar(50) not null comment '保存（“采购询价单”）',
+   Enables              int(11) not null comment '标识是否删除',
+   Safetyone            varchar(50) not null comment '保留字段',
+   Safetytwo            varchar(50) not null comment '保留字段',
+   Extend0              varchar(200) default NULL comment '扩展字段0',
+   Extend1              varchar(200) default NULL comment '扩展字段1',
+   Extend2              varchar(200) default NULL comment '扩展字段2',
+   Extend3              varchar(200) default NULL comment '扩展字段3',
+   Extend4              varchar(200) default NULL comment '扩展字段4',
+   primary key (Stoid)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购询价主表';
+
+/*==============================================================*/
+/* Table: stockinquiredetails                                   */
+/*==============================================================*/
+create table stockinquiredetails
+(
+   Stoid                varchar(20) not null comment '询价单编号',
+   Sdarows              int(11) not null comment '行号',
+   Sdamaterielid        varchar(50) not null comment '物料编号',
+   Sdamateridlname      varchar(50) not null comment '物料名称',
+   Sdamodel             varchar(50) not null comment '规格型号',
+   Sdaunit              varchar(50) not null comment '单位名称',
+   Sdanum               int(11) not null comment '数量',
+   Sdaagioes            decimal(10,2) not null comment '折前单价',
+   Sdaagiocess          int(11) not null comment '折数(%)',
+   Sdaprice             decimal(10,2) not null comment '单价',
+   Sdamoney             decimal(10,2) not null comment '金额',
+   Sdacess              int(11) not null comment '税率(%)',
+   Sdataxmoney          decimal(10,2) not null comment '税额',
+   Sdataxmoneys         decimal(10,2) not null comment '含税金额',
+   Sdaislargess         int(11) not null comment '赠品：是/否',
+   Sdaoriginid          varchar(20) not null comment '来源单号',
+   Sdaorigintype        varchar(50) not null comment '来源单别',
+   Sdaremark            varchar(2000) not null comment '备注',
+   Enables              int(11) not null comment '标识是否删除',
+   Safetyone            varchar(50) not null comment '保留字段',
+   Safetytwo            varchar(50) not null comment '保留字段',
+   Extend0              varchar(200) default NULL comment '扩展字段0',
+   Extend1              varchar(200) default NULL comment '扩展字段1',
+   Extend2              varchar(200) default NULL comment '扩展字段2',
+   Extend3              varchar(200) default NULL comment '扩展字段3',
+   Extend4              varchar(200) default NULL comment '扩展字段4',
+   primary key (Stoid, Sdarows)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购询价明细表';
+
+/*==============================================================*/
+/* Table: stockorder                                            */
+/*==============================================================*/
+create table stockorder
+(
+   Stoid                varchar(20) not null comment '单据号',
+   Stodate              date not null comment '日期',
+   Stopeoname           varchar(50) not null comment '供货商',
+   Stopeoid             varchar(50) not null comment '供货商编号',
+   Stopeoadress         varchar(50) not null comment '供货商地址',
+   Stoistax             varchar(20) not null comment '单价是否含税：1-含税，2-未税',
+   Stostate             int(11) not null comment '单况：1-未结案，2-已结案，3-无效',
+   Stoadress            varchar(50) not null comment '送货地址',
+   Stoempstock          varchar(50) not null comment '采购人员',
+   Stopersonid          varchar(50) not null comment '伪外键:采购人员id',
+   Stodept              varchar(50) not null comment '采购部门',
+   Stodeptid            varchar(50) not null comment '伪外键:部门id',
+   Stoempname           varchar(50) not null comment '制单人员',
+   Stoempcheck          varchar(50) not null comment '复核人员',
+   Stomark              varchar(2000) not null comment '备注',
+   Checkstate           int(11) not null comment '审核状态',
+   Stockordername       varchar(50) not null comment '保存（“采购订单”）',
+   Enables              int(11) not null comment '标识是否删除',
+   Safetyone            varchar(50) not null comment '保留字段',
+   Safetytwo            varchar(50) not null comment '保留字段',
+   Extend0              varchar(200) default NULL comment '扩展字段0',
+   Extend1              varchar(200) default NULL comment '扩展字段1',
+   Extend2              varchar(200) default NULL comment '扩展字段2',
+   Extend3              varchar(200) default NULL comment '扩展字段3',
+   Extend4              varchar(200) default NULL comment '扩展字段4'
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购订单主表';
+
+/*==============================================================*/
+/* Table: stockorderdetails                                     */
+/*==============================================================*/
+create table stockorderdetails
+(
+   Sodid                varchar(20) not null comment '单据号',
+   Sodlineid            int(11) not null comment '栏号',
+   Sodmaterielid        varchar(50) not null comment '物料编号',
+   Sodmatid             varchar(20) not null comment '(物料名称)',
+   Sodspec              varchar(50) not null comment '(规格型号)',
+   Sodamount            int(11) not null comment '数量',
+   Sodpreprice          decimal(10,2) not null comment '折扣前单价',
+   Sodagio              int(11) not null comment '折数（%）',
+   Sodprice             decimal(10,2) not null comment '单价',
+   Sodsum               decimal(10,2) not null comment '金额',
+   Sodcess              int(11) not null comment '税率（%）',
+   Sodsumcess           decimal(10,2) not null comment '(税额)',
+   Sodsumprice          decimal(10,2) not null comment '(含税金额）',
+   Sodpreincomestorage  date not null comment '预入库日',
+   Sodpresent           varchar(4) not null comment '是否赠品',
+   Sodorigintype        varchar(20) not null comment '(来源单别)',
+   Sodorigin            varchar(20) not null comment '(来源单号)',
+   Enables              int(11) not null comment '标识是否删除',
+   Safetyone            varchar(50) not null comment '保留字段',
+   Safetytwo            varchar(50) not null comment '保留字段',
+   Extend0              varchar(200) default NULL comment '扩展字段0',
+   Extend1              varchar(200) default NULL comment '扩展字段1',
+   Extend2              varchar(200) default NULL comment '扩展字段2',
+   Extend3              varchar(200) default NULL comment '扩展字段3',
+   Extend4              varchar(200) default NULL comment '扩展字段4'
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购订单明细表';
+
+/*==============================================================*/
+/* Table: stockrecede                                           */
+/*==============================================================*/
+create table stockrecede
+(
+   Recid                varchar(20) not null comment '采购退货单号',
+   Recdate              date not null comment '单据日期',
+   Peoid                varchar(50) not null comment '供应商编号',
+   Purveyname           varchar(50) not null comment '供货商名称',
+   Peoaddress           varchar(50) not null comment '供应商地址',
+   Stoid                varchar(20) not null comment '仓库编号',
+   Depotname            varchar(20) not null comment '仓库名称',
+   Containtax           int(11) not null comment '单价是否含税',
+   Anewstorage          int(11) not null comment '是否重新入库',
+   Stoperson            varchar(50) not null comment '采购人员姓名',
+   Stopersonid          varchar(50) not null comment '采购人员ID',
+   Stodept              varchar(50) not null comment '请购部门',
+   Stodeptid            varchar(50) not null comment '部门编号',
+   Makeperson           varchar(50) not null comment '制单人员',
+   Auditingperson       varchar(50) not null comment '复核人员',
+   Recremark            varchar(2000) not null comment '备注',
+   Estate               varchar(50) not null comment '单据状态( 是否已经审核)',
+   Stockrecedename      varchar(50) not null comment '保存（“采购退货单”）',
+   Enables              int(11) not null comment '标识是否删除',
+   Safetyone            varchar(50) not null comment '保留字段',
+   Safetytwo            varchar(50) not null comment '保留字段',
+   Extend0              varchar(200) default NULL comment '扩展字段0',
+   Extend1              varchar(200) default NULL comment '扩展字段1',
+   Extend2              varchar(200) default NULL comment '扩展字段2',
+   Extend3              varchar(200) default NULL comment '扩展字段3',
+   Extend4              varchar(200) default NULL comment '扩展字段4',
+   primary key (Recid)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购退货主表';
+
+/*==============================================================*/
+/* Table: stockstoragedetails                                   */
+/*==============================================================*/
+create table stockstoragedetails
+(
+   Storagedetailno      varchar(20) not null comment '引用采购入库单单号',
+   Rowno                int(11) not null comment '行号',
+   Materielid           varchar(50) not null comment '引用物料文件ID',
+   Materielname         varchar(50) not null comment '物料名称',
+   Types                varchar(20) default NULL comment '规格型号',
+   Units                varchar(20) not null comment '单位',
+   Amount               int(11) not null comment '数量',
+   Rebateprice          decimal(10,2) not null comment '折扣前单价',
+   Rebate               decimal(10,2) not null comment '折扣',
+   Unitprice            decimal(10,2) not null comment '单价',
+   Moneys               decimal(10,2) not null comment '金额',
+   Cess                 decimal(9,0) not null comment '税率',
+   Tax                  decimal(10,2) not null comment '税额',
+   Taxmoneys            decimal(10,2) not null comment '含税金额',
+   Origintype           varchar(20) default NULL comment '来源单别',
+   Originno             varchar(20) default NULL comment '来源单号',
+   Present              varchar(20) not null comment '是否赠品',
+   Apportionmoney       decimal(10,2) not null comment '分摊费用',
+   Enables              int(11) not null comment '标识是否删除',
+   Safetyone            varchar(50) not null comment '保留字段',
+   Safetytwo            varchar(50) not null comment '保留字段',
+   Extend0              varchar(200) default NULL comment '扩展字段0',
+   Extend1              varchar(200) default NULL comment '扩展字段1',
+   Extend2              varchar(200) default NULL comment '扩展字段2',
+   Extend3              varchar(200) default NULL comment '扩展字段3',
+   Extend4              varchar(200) default NULL comment '扩展字段4',
+   primary key (Storagedetailno, Rowno)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购入库明细';
+
+/*==============================================================*/
+/* Table: stockstoragetable                                     */
+/*==============================================================*/
+create table stockstoragetable
+(
+   Stockstorageno       varchar(20) not null comment '单号（自动生成）',
+   Storagedate          date not null comment '单据日期',
+   Purveyid             varchar(50) not null comment '供货商ID',
+   Purveyname           varchar(50) not null comment '供货商名称',
+   Purveyaddress        varchar(50) default NULL comment '供货商地址',
+   Depotid              varchar(50) not null comment '仓库ID',
+   Depotname            varchar(50) not null comment '仓库名称',
+   Pricerevenue         varchar(20) not null comment '单价是否含税',
+   Stoperson            varchar(50) not null comment '采购人员',
+   Stodept              varchar(50) not null comment '采购人员所属部门名称',
+   Stodeptid            varchar(50) not null comment '部门ID',
+   Audituserid          varchar(50) default NULL comment '审核人员ID',
+   Repeatuserid         varchar(50) default NULL comment '复核人员ID',
+   Remark               varchar(2000) default NULL comment '备注',
+   Estate               int(11) not null comment '单据状态（是否以审核）',
+   Stockstoragetablename varchar(50) default NULL comment '保存（“采购入库单”）',
+   Enables              int(11) not null comment '标识是否删除',
+   Safetyone            varchar(50) not null comment '保留字段',
+   Safetytwo            varchar(50) not null comment '保留字段',
+   Extend0              varchar(200) default NULL comment '扩展字段0',
+   Extend1              varchar(200) default NULL comment '扩展字段1',
+   Extend2              varchar(200) default NULL comment '扩展字段2',
+   Extend3              varchar(200) default NULL comment '扩展字段3',
+   Extend4              varchar(200) default NULL comment '扩展字段4',
+   primary key (Stockstorageno)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购入库主表';
+
+
+
+#采购发票主表
+
+CREATE TABLE `stockinvoice` (
+  `sysid` varchar(100) DEFAULT NULL,
+  `FundbillNo` varchar(100) DEFAULT NULL,
+  `billdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `custflag` longtext,
+  `peoid` varchar(100) DEFAULT NULL,
+  `purveyname` varchar(100) DEFAULT NULL,
+  `billtype` varchar(100) DEFAULT NULL,
+  `Invoice` varchar(100) DEFAULT NULL,
+  `Affirmstate` varchar(100) DEFAULT NULL,
+  `invoiceid` varchar(100) DEFAULT NULL,
+  `Voucherno` varchar(100) DEFAULT NULL,
+  `Currid` varchar(100) DEFAULT NULL,
+  `cvoucherNo` varchar(100) DEFAULT NULL,
+  `Exchrate` varchar(100) DEFAULT NULL,
+  `Total` varchar(100) DEFAULT NULL,
+  `tax` varchar(100) DEFAULT NULL,
+  `cashpay` varchar(100) DEFAULT NULL,
+  `Visapay` varchar(100) DEFAULT NULL,
+  `offset` varchar(100) DEFAULT NULL,
+  `Discount` varchar(100) DEFAULT NULL,
+  `Localtotal` varchar(100) DEFAULT NULL,
+  `localtax` varchar(100) DEFAULT NULL,
+  `Localcashpay` varchar(100) DEFAULT NULL,
+  `localVisapay` varchar(100) DEFAULT NULL,
+  `localoffset` varchar(100) DEFAULT NULL,
+  `Prepayday` varchar(100) DEFAULT NULL,
+  `dueto` varchar(100) DEFAULT NULL,
+  `Saleman` varchar(100) DEFAULT NULL,
+  `Mark` varchar(100) DEFAULT NULL,
+  `permitter` varchar(100) DEFAULT NULL,
+  `Project` varchar(100) DEFAULT NULL,
+  `remark` varchar(100) DEFAULT NULL,
+  `safetyone` varchar(100) DEFAULT NULL,
+  `safetytwo` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+#采购发票详细表
+
+CREATE TABLE `invoicedetails` (
+  `storagedetailno` varchar(100) DEFAULT NULL,
+  `rowno` int(100) DEFAULT NULL,
+  `materielid` varchar(100) DEFAULT NULL,
+  `materielname` varchar(100) DEFAULT NULL,
+  `types` varchar(100) DEFAULT NULL,
+  `units` varchar(100) DEFAULT NULL,
+  `amount` int(100) DEFAULT NULL,
+  `rebateprice` int(100) DEFAULT NULL,
+  `rebate` int(100) DEFAULT NULL,
+  `unitprice` int(100) DEFAULT NULL,
+  `moneys` int(100) DEFAULT NULL,
+  `cess` int(100) DEFAULT NULL,
+  `tax` int(100) DEFAULT NULL,
+  `taxmoneys` varchar(100) DEFAULT NULL,
+  `originno` varchar(100) DEFAULT NULL,
+  `present` varchar(100) DEFAULT NULL,
+  `Lqty` int(100) DEFAULT NULL,
+  `enables` int(100) DEFAULT NULL,
+  `safetyone` varchar(100) DEFAULT NULL,
+  `safetytwo` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

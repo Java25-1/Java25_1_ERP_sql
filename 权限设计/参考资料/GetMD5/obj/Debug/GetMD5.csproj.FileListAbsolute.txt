@@ -1,0 +1,12 @@
+D:\ACCP\软件工厂\dotnet技术强化\MD5\GetMD5\bin\Debug\GetMD5.exe.config
+D:\ACCP\软件工厂\dotnet技术强化\MD5\GetMD5\bin\Debug\GetMD5.exe
+D:\ACCP\软件工厂\dotnet技术强化\MD5\GetMD5\bin\Debug\GetMD5.pdb
+D:\ACCP\软件工厂\dotnet技术强化\MD5\GetMD5\obj\Debug\ResolveAssemblyReference.cache
+D:\ACCP\软件工厂\dotnet技术强化\MD5\GetMD5\obj\Debug\GetMD5.GetMD5Form.resources
+D:\ACCP\软件工厂\dotnet技术强化\MD5\GetMD5\obj\Debug\GetMD5.Properties.Resources.resources
+D:\ACCP\软件工厂\dotnet技术强化\MD5\GetMD5\obj\Debug\GetMD5.csproj.GenerateResource.Cache
+D:\ACCP\软件工厂\dotnet技术强化\MD5\GetMD5\obj\Debug\GetMD5.exe
+D:\ACCP\软件工厂\dotnet技术强化\MD5\GetMD5\obj\Debug\GetMD5.pdb
+D:\Home\txc\Desktop\入厂考试题库\用户登录\参考资料\GetMD5\bin\Debug\GetMD5.exe.config
+D:\Home\txc\Desktop\入厂考试题库\用户登录\参考资料\GetMD5\obj\Debug\GetMD5.exe
+D:\Home\txc\Desktop\入厂考试题库\用户登录\参考资料\GetMD5\obj\Debug\GetMD5.pdb
